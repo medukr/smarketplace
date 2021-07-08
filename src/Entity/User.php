@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -68,11 +70,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private DateTimeInterface $createdAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Address::class, inversedBy="user")
+     * @ORM\JoinTable(name="user_to_address")
+     */
+    private Collection $addresses;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Shop::class, inversedBy="user")
+     * @ORM\JoinTable(name="user_to_shop")
+     */
+    private Collection $shops;
+
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->addresses = new ArrayCollection();
+        $this->shops = new ArrayCollection();
     }
 
 
@@ -252,6 +268,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Address[]
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): self
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses[] = $address;
+            $address->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): self
+    {
+        if ($this->addresses->removeElement($address)) {
+            $address->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Shop[]
+     */
+    public function getShops(): Collection
+    {
+        return $this->shops;
+    }
+
+    public function addShop(Shop $shop): self
+    {
+        if (!$this->shops->contains($shop)) {
+            $this->shops[] = $shop;
+            $shop->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShop(Shop $shop): self
+    {
+        if ($this->shops->removeElement($shop)) {
+            $shop->removeUser($this);
+        }
 
         return $this;
     }
