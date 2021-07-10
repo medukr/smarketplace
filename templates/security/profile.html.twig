@@ -1,0 +1,26 @@
+{% extends 'security/baseProfile.html.twig' %}
+
+{% block title %}{% trans %}user.profile{% endtrans %}{% endblock %}
+
+{% block contentTitle %}
+    <h1>{% trans %}user.profile{% endtrans %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="img-fluid rounded-start" alt="#" >
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">{% trans %}name{% endtrans %}:{{ user.name }}</li>
+                        <li class="list-group-item">{% trans %}email{% endtrans %}:{{ user.email }}</li>
+                        <li class="list-group-item">{% trans %}phone{% endtrans %}:{{ user.phone }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
