@@ -131,6 +131,7 @@ class Address
     {
         if (!$this->user->contains($user)) {
             $this->user[] = $user;
+            $user->addAddress($this);
         }
 
         return $this;

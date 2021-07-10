@@ -37,6 +37,54 @@
         <source>user.profile</source>
         <target>Профиль пользователя</target>
       </trans-unit>
+      <trans-unit id="qmpYFJN3" resname="shop.add">
+        <source>shop.add</source>
+        <target>Добавить магазин</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN4" resname="shop.add.submit">
+        <source>shop.add.submit</source>
+        <target>Добавить</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN5" resname="shop.add.description">
+        <source>shop.add.description</source>
+        <target>Описание магазина</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN6" resname="shop.add.name">
+        <source>shop.add.name</source>
+        <target>Название магазина</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN7" resname="city">
+        <source>city</source>
+        <target>Город</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN8" resname="street">
+        <source>street</source>
+        <target>Улица</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN9" resname="house">
+        <source>house</source>
+        <target>Дом</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN10" resname="postal_code">
+        <source>postal_code</source>
+        <target>Почтовый индекс</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN11" resname="address.add">
+        <source>address.add</source>
+        <target>Добавить адрес</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN12" resname="address.submit">
+        <source>address.submit</source>
+        <target>Добавить</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN13" resname="address.added">
+        <source>address.added</source>
+        <target>Адрес добавлен</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN14" resname="shop.added">
+        <source>shop.added</source>
+        <target>Магазин добавлен</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
