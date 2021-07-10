@@ -7,17 +7,20 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public const ROLE_USER = 'ROLE_USER';
 
+    public const STATUS_NEW = 1;
 
     /**
      * @ORM\Id
@@ -81,6 +84,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\JoinTable(name="user_to_shop")
      */
     private Collection $shops;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_verified = false;
 
 
     public function __construct()
@@ -322,6 +330,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->shops->removeElement($shop)) {
             $shop->removeUser($this);
         }
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
 
         return $this;
     }
