@@ -26,6 +26,66 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
+    #[Route('/user/listShops', name: '_profile_list_shops')]
+    public function listShops():Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        return $this->render('profile/listShops.html.twig', [
+            'shops' => $user->getShops()
+        ]);
+    }
+
+
+    #[Route('/user/viewShop/{id<\d+>}', name: '_profile_view_shop')]
+    public function viewShop(Shop $shop):Response
+    {
+        return $this->render('profile/viewShop.html.twig', [
+            'user' => $this->getUser(),
+            'shop' => $shop
+        ]);
+    }
+
+
+    #[Route('/user/editShop/{id<\d+>}', name: '_profile_edit_shop')]
+    public function editShop(Request $request, EntityManagerInterface $em, TranslatorInterface $translator, Shop $shop):Response
+    {
+        $form = $this->createForm(AddShopFormType::class, $shop);
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+
+        if ($user instanceof User && $form->isSubmitted() && $form->isValid()) {
+            $shop->addUser($user);
+            $shop->setStatus($shop::STATUS_NEW);
+
+            $em->persist($shop);
+            $em->flush();
+
+            $this->addFlash(self::FLASH_INFO, $translator->trans('shop.added'));
+
+            return $this->redirectToRoute('_profile');
+        }
+
+        return $this->render('profile/form.html.twig', [
+            'user' => $user,
+            'Form' => $form->createView(),
+            'contentTitle' => $translator->trans('shop.add')
+        ]);
+    }
+
+    #[Route('/user/deleteShop/{id<\d+>}', name: '_profile_delete_shop')]
+    public function deleteShop(Shop $shop, EntityManagerInterface $em):Response
+    {
+        $em->remove($shop);
+        $em->flush();
+
+        return $this->redirectToRoute('_profile');
+    }
+
+
     #[Route('/user/addShop', name: '_profile_add_shop')]
     public function addShop(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
@@ -48,6 +108,7 @@ class ProfileController extends AbstractController
         }
 
         return $this->render('profile/form.html.twig', [
+            'user' => $user,
             'Form' => $form->createView(),
             'contentTitle' => $translator->trans('shop.add')
         ]);
