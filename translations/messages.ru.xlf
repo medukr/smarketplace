@@ -93,6 +93,54 @@
         <source>shop</source>
         <target>Магазин</target>
       </trans-unit>
+      <trans-unit id="qmpYFJN17" resname="category.add">
+        <source>category.add</source>
+        <target>Добавить категорию</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN18" resname="category.submit">
+        <source>category.submit</source>
+        <target>Сохранить категорию</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN19" resname="category.added">
+        <source>category.added</source>
+        <target>Категория добавлена</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN21" resname="category.name">
+        <source>category.name</source>
+        <target>Название категории</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN22" resname="category.parent">
+        <source>category.parent</source>
+        <target>Родительская категория</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN23" resname="product.add">
+        <source>product.add</source>
+        <target>Добавить товар</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN24" resname="product.submit">
+        <source>product.submit</source>
+        <target>Сохранить товар</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN25" resname="product.added">
+        <source>product.added</source>
+        <target>Товар добавлен</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN26" resname="product.name">
+        <source>product.name</source>
+        <target>Название товара</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN27" resname="product.description">
+        <source>product.description</source>
+        <target>Описание товара</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN28" resname="product.category">
+        <source>product.category</source>
+        <target>Категория товара</target>
+      </trans-unit>
+      <trans-unit id="qmpYFJN29" resname="user.profile">
+        <source>user.profile</source>
+        <target>Профиль пользователя</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
