@@ -1,0 +1,40 @@
+{% if p.hasToPaginate %}
+    {# Для формирования ссылки #}
+    {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+    <nav aria-label="Page navigation example">
+        {# Ссылки на страницы #}
+        <ul class="pagination justify-content-center">
+            {% if p.hasPreviousPage %}
+            <li class="page-item">
+                <a class="page-link" href="{{ currentPath }}?page={{ p.previousPage }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {# Лимит для вывода количества страниц #}
+            {% set limit = 5 %}
+            {# Рачитываем страницы по 5 в обе стороны от текущей #}
+            {% set fromPage = p.currentPage > limit ? p.currentPage - limit : 1 %}
+            {% set toPage = p.lastPage - p.currentPage >= limit ? p.currentPage + limit : p.lastPage %}
+
+            {% for i in fromPage..toPage  %}
+                <li class="page-item {% if i == p.currentPage %}active{% endif %}">
+                    <a class="page-link" href="{{ currentPath }}?page={{ i }}">
+                        {{ i }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% if p.hasNextPage %}
+            <li class="page-item">
+                <a class="page-link" href="{{ currentPath }}?page={{ p.nextPage }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

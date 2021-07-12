@@ -141,6 +141,10 @@
         <source>user.profile</source>
         <target>Профиль пользователя</target>
       </trans-unit>
+      <trans-unit id="qmpYFJN30" resname="continue.reading">
+        <source>continue.reading</source>
+        <target>Продолжить просмотр</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

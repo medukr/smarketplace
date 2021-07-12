@@ -11,6 +11,7 @@ use App\Form\AddAddressFormType;
 use App\Form\AddShopFormType;
 use App\Form\CategoryFormType;
 use App\Form\ProductFormType;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,11 +45,14 @@ class ProfileController extends AbstractController
 
 
     #[Route('/user/viewShop/{id<\d+>}', name: '_profile_view_shop')]
-    public function viewShop(Shop $shop):Response
+    public function viewShop(Shop $shop, ProductRepository $productRepository, Request $request):Response
     {
+        $page = (int) $request->get('page', 1);
+
         return $this->render('profile/viewShop.html.twig', [
             'user' => $this->getUser(),
-            'shop' => $shop
+            'shop' => $shop,
+            'products' => $productRepository->getListByShop($shop, $page)
         ]);
     }
 
