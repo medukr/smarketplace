@@ -37,7 +37,8 @@ class ImageController extends AbstractController
                 ->setMime($mime)
                 ->setSize($size)
                 ->setPath($path)
-                ->setUrl($url);
+                ->setUrl($url)
+                ->setCreatedAt(new \DateTimeImmutable());
 
             $em->persist($img);
             $em->flush();

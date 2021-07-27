@@ -56,7 +56,7 @@ class Product
     /**
      * @ORM\OneToMany(targetEntity=ImageToProduct::class, mappedBy="productId")
      */
-    private ArrayCollection $images;
+    private Collection $images;
 
 
     public function __construct()

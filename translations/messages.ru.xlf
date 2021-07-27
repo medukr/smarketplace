@@ -145,6 +145,10 @@
         <source>continue.reading</source>
         <target>Продолжить просмотр</target>
       </trans-unit>
+      <trans-unit id="qmpYFJN31" resname="image.add">
+        <source>image.add</source>
+        <target>Изображение</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
